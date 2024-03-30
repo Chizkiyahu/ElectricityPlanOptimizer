@@ -1,7 +1,7 @@
 body {
+    margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
-    margin: 20px;
-    padding: 20px;
     background-color: var(--bg-color);
     color: var(--text-color);
     text-align: center; /* Center text */
@@ -61,29 +61,58 @@ table, th, td {
 a {
     color: #4e9af1;
 }
-/* Dark mode styles */
+/* Base styles */
 :root {
-    --bg-color: #fff;
-    --text-color: #000;
+    --bg-color: #f0f0f0; /* Lighter background for light mode */
+    --text-color: #333; /* Darker text for better contrast in light mode */
     --button-bg: #007bff;
     --button-text: #fff;
     --button-hover-bg: #0056b3;
+    --header-bg-color: #e8e8e8; /* Soft gray for light mode header */
+    --header-text-color: #505050; /* Dark gray text for light mode */
 }
+
 @media (prefers-color-scheme: dark) {
     :root {
-        --bg-color: #333;
-        --text-color: #fff;
+        --bg-color: #2c2c2c; /* Darker background for dark mode */
+        --text-color: #c7c7c7; /* Light gray text for dark mode */
         --button-bg: #444;
         --button-text: #ccc;
         --button-hover-bg: #555;
+        --header-bg-color: #1a1a1a; /* Dark gray or blue-gray for dark mode header */
+        --header-text-color: #b8b8b8; /* Lighter text for dark mode */
     }
     table, th, td {
         border: 1px solid #888;
     }
     a {
-        color: #79c0ff;
+        color: #4a90e2; /* Brighter link color for dark mode for better visibility */
     }
     .best-plan {
         background-color: #424242;
     }
 }
+
+/* Header Styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--header-bg-color); /* Use variable */
+    color: var(--header-text-color); /* Use variable */
+    padding: 10px 20px;
+}
+
+.header .logo, .header nav a {
+    color: inherit; /* Ensures text color matches the header's color */
+}
+
+.header nav a:hover {
+    color: #ddd;
+}
+
+.fa-github {
+    font-size: 24px;
+}
+
+

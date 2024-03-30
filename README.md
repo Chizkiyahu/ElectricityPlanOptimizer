@@ -14,3 +14,5 @@ You can access the live website [here](https://chizkiyahu.github.io/ElectricityP
 
 ## Data Privacy
 All data processed by ElectricityPlanOptimizer is stored and analyzed locally on your device. No data is sent to or stored on any server.
+
+![Screenshot Description](img/screenshot.png)

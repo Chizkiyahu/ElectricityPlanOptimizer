@@ -27,7 +27,9 @@ document.getElementById('endDate').addEventListener('change', applyFiltersAutoma
 document.querySelectorAll('#dayFilters input').forEach(input => input.addEventListener('change', applyFiltersAutomatically));
 
 function processData(csvData, isInitialLoad) {
-    const lines = csvData.split('\n').slice(12); // Adjust if header lines count changes
+    let lines = csvData.split('\n').slice(0, 12); // Extract the first 12 lines
+    displayCsvDetails(lines); // Call the new function to display details
+    lines = csvData.split('\n').slice(12); // Adjust if header lines count changes
     let hourlyData = {};
     let hourlyDataPerDay = {}; // New object to store hourly data per day
     let dates = [];
@@ -54,25 +56,15 @@ function processData(csvData, isInitialLoad) {
         }
 
         const dayFilters = [...document.querySelectorAll('#dayFilters input[type="checkbox"]:checked')].map(el => parseInt(el.value));
-
-
-
-        // Reset current date to start of the day
-
-
         if (startDateFilter && currentDate < startDateFilter) {
             return;
         }
-
         if (endDateFilter && currentDate > endDateFilter) {
             return; // Skip this entry if it doesn't match the end date filter
         }
-
         if (!dayFilters.includes(currentDate.getDay())) {
             return; // Skip this entry if it doesn't match the selected days filter
         }
-
-
 
         const hour = time.split(':')[0];
         const dayOfWeek = currentDate.getDay(); // Get day of the week
@@ -104,6 +96,27 @@ function processData(csvData, isInitialLoad) {
     displayGraph(hourlyData);
     calculateBestPlan(hourlyDataPerDay); // Pass hourlyDataPerDay to calculateBestPlan
 }
+
+function displayCsvDetails(lines) {
+    const csvDetails = document.getElementById('csvDetails');
+    csvDetails.innerHTML = ''; // Clear previous content
+
+    // Extracting customer name and address
+    const [customerNameValue, customerAddressValue] = lines[3].split(',');
+    // Extracting meter type and number
+    const [meterNumberValue, meterTypeValue] = lines[7].split(',');
+    // Create HTML content
+    const content = `
+        <div><strong>Customer Name:</strong> ${customerNameValue.trim()}</div>
+        <div><strong>Customer Address:</strong> ${customerAddressValue.trim()}</div>
+        <div><strong>Meter Type:</strong> ${meterTypeValue.trim()}</div>
+        <div><strong>Meter Number:</strong> ${meterNumberValue.trim()}</div>
+    `;
+
+    // Set the inner HTML of the details container
+    csvDetails.innerHTML = content;
+}
+
 
 function displayGraph(hourlyData) {
     const dataEntries = Object.entries(hourlyData);

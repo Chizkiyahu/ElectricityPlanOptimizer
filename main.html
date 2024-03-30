@@ -15,108 +15,18 @@
             width: 100%;
             margin-top: 20px;
         }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 5px;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
     <input type="file" id="fileInput" accept=".csv">
     <div id="chartContainer"></div>
     <div id="bestPlan"></div>
-
-    <script>
-        document.getElementById('fileInput').addEventListener('change', function(event) {
-            const fileReader = new FileReader();
-            fileReader.onload = function(fileLoadedEvent) {
-                const text = fileLoadedEvent.target.result;
-                processData(text);
-            };
-            fileReader.readAsText(event.target.files[0], "UTF-8");
-        });
-
-        function processData(csvData) {
-            const lines = csvData.split('\n').slice(12); // Skipping the first 12 header lines
-            let hourlyData = {};
-
-            lines.forEach(line => {
-                const [date, time, value] = line.split(',');
-                if (!date || !time || !value) return; // Skip incomplete lines
-
-                const hour = time.split(':')[0].replace(/"/g, ''); 
-                if (!hourlyData[hour]) {
-                    hourlyData[hour] = 0;
-                }
-                hourlyData[hour] += parseFloat(value);
-            });
-            sortedHourlyData = Object.entries(hourlyData).sort((a, b) => {
-                // Convert hour strings to numbers for comparison
-                return parseInt(a[0], 10) - parseInt(b[0], 10);
-            });
-
-            displayGraph(sortedHourlyData);
-            calculateBestPlan(hourlyData);
-        }
-
-        function displayGraph(sortedData) {
-            let dataPoints = sortedData.map(([hour, value]) => ({
-                label: `${hour}:00`, 
-                y: value
-            }));
-
-            const chart = new CanvasJS.Chart("chartContainer", {
-                animationEnabled: true,
-                theme: "light2",
-                title: {
-                    text: "Hourly Electricity Usage"
-                },
-                axisX: {
-                    title: "Time",
-                    interval: 1
-                },
-                axisY: {
-                    title: "Usage (kWh)",
-                    includeZero: true
-                },
-                data: [{
-                    type: "column",
-                    dataPoints: dataPoints
-                }]
-            });
-            chart.render();
-        }
-        function calculateBestPlan(hourlyData) {
-            let totalKwhFreePerPlan = {
-                plan1: 0,
-                plan2: 0,
-                plan3: 0
-            };
-
-            Object.entries(hourlyData).forEach(([hour, kwh]) => {
-                const hourInt = parseInt(hour); // Ensure hour is an integer and remove any quotation marks
-
-                // Plan 1: 8% free from 23:00 to 17:00
-                if (hourInt >= 23 || hourInt <= 17) {
-                    totalKwhFreePerPlan.plan1 += kwh * 0.08;
-                }
-
-                // Plan 2: 5% free all day
-                totalKwhFreePerPlan.plan2 += kwh * 0.05;
-
-                // Plan 3: 20% free from 23:00 to 07:00
-                if (hourInt >= 23 || hourInt <= 7) {
-                    totalKwhFreePerPlan.plan3 += kwh * 0.20;
-                }
-            });
-
-            displayPlanResults(totalKwhFreePerPlan);
-        }
-
-        function displayPlanResults(totalKwhFreePerPlan) {
-            const resultsContainer = document.getElementById('bestPlan');
-            resultsContainer.innerHTML = `<h3>Free kWh per Plan</h3>
-                <p>Plan 1 (8% from 23:00 to 17:00): ${totalKwhFreePerPlan.plan1.toFixed(2)} kWh free</p>
-                <p>Plan 2 (5% all day): ${totalKwhFreePerPlan.plan2.toFixed(2)} kWh free</p>
-                <p>Plan 3 (20% from 23:00 to 07:00): ${totalKwhFreePerPlan.plan3.toFixed(2)} kWh free</p>`;
-        }
-
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

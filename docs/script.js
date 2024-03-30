@@ -1,34 +1,74 @@
+// Initial setup to add event listeners to the file input and filters
 document.getElementById('fileInput').addEventListener('change', function(event) {
     const fileReader = new FileReader();
     fileReader.onload = function(fileLoadedEvent) {
         const text = fileLoadedEvent.target.result;
-        processData(text);
+        processData(text, true); // True indicates this is the initial load
     };
     fileReader.readAsText(event.target.files[0], "UTF-8");
 });
 
-function processData(csvData) {
-    const lines = csvData.split('\n').slice(12); // Skipping the first 12 header lines
+// Function to apply filters automatically without a dedicated button
+function applyFiltersAutomatically() {
+    const fileInput = document.getElementById('fileInput');
+    if (fileInput.files.length > 0) {
+        const fileReader = new FileReader();
+        fileReader.onload = function(fileLoadedEvent) {
+            const text = fileLoadedEvent.target.result;
+            processData(text, false); // False for subsequent loads
+        };
+        fileReader.readAsText(fileInput.files[0], "UTF-8");
+    }
+}
+
+// Attach event listeners to filter inputs for automatic reprocessing
+document.getElementById('startDate').addEventListener('change', applyFiltersAutomatically);
+document.getElementById('endDate').addEventListener('change', applyFiltersAutomatically);
+document.querySelectorAll('#dayFilters input').forEach(input => input.addEventListener('change', applyFiltersAutomatically));
+
+function processData(csvData, isInitialLoad) {
+    const lines = csvData.split('\n').slice(12); // Adjust if header lines count changes
     let hourlyData = {};
+    let dates = [];
 
     lines.forEach(line => {
-        const [date, time, value] = line.split(',');
+        const [date, time, value] = line.split(',').map(part => part.replace(/"/g, ''));
         if (!date || !time || !value) return; // Skip incomplete lines
 
-        const hour = time.split(':')[0].replace(/"/g, '');
-        if (!hourlyData[hour]) {
-            hourlyData[hour] = 0;
+        // Split the date string into components
+        const [day, month, year] = date.split('/').map(Number); // Convert each part to a number
+
+        // Create a new Date object using the year, month, and day
+        // Note: Months are 0-indexed in JavaScript's Date, so subtract 1 from the month
+        const currentDate = new Date(year, month - 1, day);
+        dates.push(currentDate); // Collect all dates for initial load processing
+
+        // Filter application
+        const startDateFilter = document.getElementById('startDate').value;
+        const endDateFilter = document.getElementById('endDate').value;
+        const dayFilters = [...document.querySelectorAll('#dayFilters input[type="checkbox"]:checked')].map(el => parseInt(el.value));
+
+        if ((startDateFilter && currentDate < new Date(startDateFilter)) || (endDateFilter && currentDate > new Date(endDateFilter)) || !dayFilters.includes(currentDate.getDay())) {
+            return; // Skip this entry if it doesn't match the filters
         }
-        hourlyData[hour] += parseFloat(value);
+
+        const hour = time.split(':')[0];
+        hourlyData[hour] = (hourlyData[hour] || 0) + parseFloat(value);
     });
 
+    // Set start and end dates from data on initial load
+    if (isInitialLoad && dates.length > 0) {
+        dates.sort((a, b) => a - b); // Sort dates
+        document.getElementById('startDate').valueAsDate = dates[0];
+        document.getElementById('endDate').valueAsDate = dates[dates.length - 1];
+    }
     displayGraph(hourlyData);
     calculateBestPlan(hourlyData);
 }
 
 function displayGraph(hourlyData) {
-    // Convert hourlyData to array and calculate min and max values
     const dataEntries = Object.entries(hourlyData);
+    dataEntries.sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
     const values = dataEntries.map(([_, value]) => value);
     const minValue = Math.min(...values);
     const maxValue = Math.max(...values);

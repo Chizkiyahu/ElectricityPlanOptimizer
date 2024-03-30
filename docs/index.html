@@ -13,9 +13,30 @@
         1. Log in to <a href="https://www.iec.co.il/consumption-info-menu" target="_blank">IEC Consumption Info</a>.<br>
         2. Click on "Up-to-date consumption status" button.<br>
         3. Click on "Get Excel file of consumption data from the past year by email" button.<br>
-        4. Finally, click on the "Send email" button.
+        4. click on the "Send email" button.
+        5. Finally, download .csv from the email
     </p>
     <input type="file" id="fileInput" accept=".csv" class="file-input">
+    <div id="filters">
+        <h2>Filter Options</h2>
+        <div>
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate">
+        </div>
+        <div>
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate">
+        </div>
+        <div id="dayFilters">
+            <label><input type="checkbox" value="0" checked>Sun</label>
+            <label><input type="checkbox" value="1" checked>Mon</label>
+            <label><input type="checkbox" value="2" checked>Tue</label>
+            <label><input type="checkbox" value="3" checked>Wed</label>
+            <label><input type="checkbox" value="4" checked>Thu</label>
+            <label><input type="checkbox" value="5" checked>Fri</label>
+            <label><input type="checkbox" value="6" checked>Sat</label>
+        </div>
+    </div>
     <div id="chartContainer"></div>
     <div id="bestPlan"></div>
     <script src="script.js"></script>

@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Electricity Usage Analyzer</title>
+    <script src="canvasjs.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Electricity Usage Analyzer</h1>
+    <p>
+        To obtain the CSV file for analysis, please follow these steps:<br>
+        1. Log in to <a href="https://www.iec.co.il/consumption-info-menu" target="_blank">IEC Consumption Info</a>.<br>
+        2. Click on "Up-to-date consumption status" button.<br>
+        3. Click on "Get Excel file of consumption data from the past year by email" button.<br>
+        4. Finally, click on the "Send email" button.
+    </p>
+    <input type="file" id="fileInput" accept=".csv" class="file-input">
+    <div id="chartContainer"></div>
+    <div id="bestPlan"></div>
+    <script src="script.js"></script>
+</body>
+</html>

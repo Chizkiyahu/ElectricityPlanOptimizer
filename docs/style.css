@@ -115,4 +115,10 @@ a {
     font-size: 24px;
 }
 
-
+#disclaimer {
+    color: red;
+}
+#data-privacy {
+    font-weight: bold;
+    margin-top: 20px;
+}

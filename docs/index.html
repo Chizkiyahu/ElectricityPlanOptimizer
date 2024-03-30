@@ -25,7 +25,16 @@
     5. Finally, download .csv from the email.
 </p>
 <input type="file" id="fileInput" accept=".csv" class="file-input">
-<div id="csvDetails"></div>
+<div id="csvDetails">
+    <div><strong>Customer Name:</strong> <span id="customerName"></span></div>
+    <div><strong>Customer Address:</strong> <span id="customerAddress"></span></div>
+    <div><strong>Meter Type:</strong> <span id="meterType"></span></div>
+    <div><strong>Meter Number:</strong> <span id="meterNumber"></span></div>
+    <div><strong>Start Date:</strong> <span id="startDateDisplay"></span></div>
+    <div><strong>End Date:</strong> <span id="endDateDisplay"></span></div>
+    <div><strong>Total Consumption (kWh):</strong> <span id="totalKwh"></span></div>
+</div>
+
 <div id="filters">
     <h2>Filter Options</h2>
     <div>

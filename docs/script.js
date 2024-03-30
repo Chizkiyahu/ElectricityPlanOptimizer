@@ -27,13 +27,32 @@ document.getElementById('endDate').addEventListener('change', applyFiltersAutoma
 document.querySelectorAll('#dayFilters input').forEach(input => input.addEventListener('change', applyFiltersAutomatically));
 
 function processData(csvData, isInitialLoad) {
-    let lines = csvData.split('\n').slice(0, 12); // Extract the first 12 lines
-    displayCsvDetails(lines); // Call the new function to display details
-    lines = csvData.split('\n').slice(12); // Adjust if header lines count changes
+    const lines = csvData.split('\n');
+    const headerLines = lines.slice(0, 12); // Extract the first 12 lines for header details
+    const dataLines = lines.slice(12); // Data lines excluding headers
+
+    let sumKwh = 0;
+    let startDate = null;
+    let endDate = null;
+
+    dataLines.forEach(line => {
+        const parts = line.split(',').map(part => part.trim().replace(/"/g, ''));
+        if (parts.length > 2) {
+            const date = parts[0];
+            const kwh = parseFloat(parts[2]);
+            if (!startDate) startDate = date;
+            endDate = date;
+            if (!isNaN(kwh)) sumKwh += kwh;
+        }
+    });
+
+    // Call displayCsvDetails with all the parameters, including the newly calculated ones
+    displayCsvDetails(headerLines, startDate, endDate, sumKwh);
+
     let hourlyData = {};
     let hourlyDataPerDay = {}; // New object to store hourly data per day
     let dates = [];
-    lines.forEach(line => {
+    dataLines.forEach(line => {
         const [date, time, value] = line.split(',').map(part => part.replace(/"/g, ''));
         if (!date || !time || !value) return; // Skip incomplete lines
 
@@ -97,24 +116,18 @@ function processData(csvData, isInitialLoad) {
     calculateBestPlan(hourlyDataPerDay); // Pass hourlyDataPerDay to calculateBestPlan
 }
 
-function displayCsvDetails(lines) {
-    const csvDetails = document.getElementById('csvDetails');
-    csvDetails.innerHTML = ''; // Clear previous content
+function displayCsvDetails(lines, startDate, endDate, sumKwh) {
+    // Assuming lines[3] and lines[5] have been split correctly into relevant parts in your actual code
+    // Extract and display customer details
+    document.getElementById('customerName').textContent = lines[3].split(',')[0].trim().replace(/"/g, '');
+    document.getElementById('customerAddress').textContent = lines[3].split(',')[1].trim().replace(/"/g, '');
+    document.getElementById('meterType').textContent = lines[7].split(',')[0].trim().replace(/"/g, '');
+    document.getElementById('meterNumber').textContent = lines[7].split(',')[1].trim().replace(/"/g, '');
 
-    // Extracting customer name and address
-    const [customerNameValue, customerAddressValue] = lines[3].split(',');
-    // Extracting meter type and number
-    const [meterNumberValue, meterTypeValue] = lines[7].split(',');
-    // Create HTML content
-    const content = `
-        <div><strong>Customer Name:</strong> ${customerNameValue.trim()}</div>
-        <div><strong>Customer Address:</strong> ${customerAddressValue.trim()}</div>
-        <div><strong>Meter Type:</strong> ${meterTypeValue.trim()}</div>
-        <div><strong>Meter Number:</strong> ${meterNumberValue.trim()}</div>
-    `;
-
-    // Set the inner HTML of the details container
-    csvDetails.innerHTML = content;
+    // Update placeholders for start date, end date, and total kWh
+    document.getElementById('startDateDisplay').textContent = startDate;
+    document.getElementById('endDateDisplay').textContent = endDate;
+    document.getElementById('totalKwh').textContent = sumKwh.toFixed(2);
 }
 
 

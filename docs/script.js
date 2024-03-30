@@ -27,9 +27,29 @@ function processData(csvData) {
 }
 
 function displayGraph(hourlyData) {
-    let dataPoints = Object.entries(hourlyData).map(([hour, value]) => ({
+    // Convert hourlyData to array and calculate min and max values
+    const dataEntries = Object.entries(hourlyData);
+    const values = dataEntries.map(([_, value]) => value);
+    const minValue = Math.min(...values);
+    const maxValue = Math.max(...values);
+
+    // Function to interpolate between green and red based on value
+    function getColorForValue(value) {
+        // Normalize value between 0 and 1
+        const normalized = (value - minValue) / (maxValue - minValue);
+        // Calculate red and green components based on normalized value
+        // Green to Red gradient: (1-normalized) for green and normalized for red
+        const red = Math.round(normalized * 255);
+        const green = Math.round((1 - normalized) * 255);
+        // Return RGB color string
+        return `rgb(${red}, ${green}, 0)`;
+    }
+
+    // Map hourlyData to dataPoints with color based on value
+    let dataPoints = dataEntries.map(([hour, value]) => ({
         label: hour + ':00',
-        y: value
+        y: value,
+        color: getColorForValue(value) // Dynamic color based on value
     }));
 
     const chartTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? "dark1" : "light2";

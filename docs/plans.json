@@ -2,84 +2,84 @@
   {
     "company_name": "אלקטרה פאוור",
     "plan_description": "מסלול לילה",
-    "days_of_week": [1, 2, 3, 4, 5, 6, 7],
+    "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [23, 0, 1, 2, 3, 4, 5, 6],
     "discount": [20]
   },
   {
     "company_name": "סלקום אנרג'י",
     "plan_description": "חוסכים בלילה",
-    "days_of_week": [1, 2, 3, 4, 5],
+    "days_of_week": [0, 1, 2, 3, 4],
     "applicable_hours": [22, 23, 0, 1, 2, 3, 4, 5, 6],
     "discount": [20]
   },
   {
     "company_name": "פרטנר חשמל",
     "plan_description": "חיות לילה",
-    "days_of_week": [1, 2, 3, 4, 5],
+    "days_of_week": [0, 1, 2, 3, 4],
     "applicable_hours": [0, 1, 2, 3, 4, 5],
     "discount": [20]
   },
   {
     "company_name": "סלקום אנרג'י",
     "plan_description": "עובדים מהבית",
-    "days_of_week": [1, 2, 3, 4, 5],
+    "days_of_week": [0, 1, 2, 3, 4],
     "applicable_hours": [7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
     "discount": [15]
   },
   {
     "company_name": "פרטנר חשמל",
     "plan_description": "עובדים מהבית",
-    "days_of_week": [1, 2, 3, 4, 5],
+    "days_of_week": [0, 1, 2, 3, 4],
     "applicable_hours": [8, 9, 10, 11, 12, 13, 14, 15, 16],
     "discount": [15]
   },
   {
     "company_name": "פזגז",
     "plan_description": "הנחת סופ\"ש",
-    "days_of_week": [5, 6, 7],
+    "days_of_week": [5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [10]
   },
   {
     "company_name": "אלקטרה פאוור",
     "plan_description": "מסלול הייטק",
-    "days_of_week": [1, 2, 3, 4, 5, 6, 7],
+    "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [23, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
     "discount": [8, 9, 10]
   },
   {
     "company_name": "פזגז",
     "plan_description": "הנחה 24/7",
-    "days_of_week": [1, 2, 3, 4, 5, 6, 7],
+    "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [7]
   },
   {
     "company_name": "אמישראגז חשמל",
     "plan_description": "חיסכון קבוע",
-    "days_of_week": [1, 2, 3, 4, 5, 6, 7],
+    "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [6.5]
   },
   {
     "company_name": "אלקטרה פאוור",
     "plan_description": "מסלול POWER",
-    "days_of_week": [1, 2, 3, 4, 5, 6, 7],
+    "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [5, 6, 7]
   },
   {
     "company_name": "סלקום אנרג'י",
     "plan_description": "חוסכים קבוע",
-    "days_of_week": [1, 2, 3, 4, 5, 6, 7],
+    "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [5, 6, 7]
   },
   {
     "company_name": "פרטנר חשמל",
     "plan_description": "הנחה קבועה כל היום",
-    "days_of_week": [1, 2, 3, 4, 5, 6, 7],
+    "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [5, 6, 7]
   }

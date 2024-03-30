@@ -29,8 +29,8 @@ document.querySelectorAll('#dayFilters input').forEach(input => input.addEventLi
 function processData(csvData, isInitialLoad) {
     const lines = csvData.split('\n').slice(12); // Adjust if header lines count changes
     let hourlyData = {};
+    let hourlyDataPerDay = {}; // New object to store hourly data per day
     let dates = [];
-
     lines.forEach(line => {
         const [date, time, value] = line.split(',').map(part => part.replace(/"/g, ''));
         if (!date || !time || !value) return; // Skip incomplete lines
@@ -43,27 +43,66 @@ function processData(csvData, isInitialLoad) {
         const currentDate = new Date(year, month - 1, day);
         dates.push(currentDate); // Collect all dates for initial load processing
 
-        // Filter application
-        const startDateFilter = document.getElementById('startDate').value;
-        const endDateFilter = document.getElementById('endDate').value;
-        const dayFilters = [...document.querySelectorAll('#dayFilters input[type="checkbox"]:checked')].map(el => parseInt(el.value));
-
-        if ((startDateFilter && currentDate < new Date(startDateFilter)) || (endDateFilter && currentDate > new Date(endDateFilter)) || !dayFilters.includes(currentDate.getDay())) {
-            return; // Skip this entry if it doesn't match the filters
+        let startDateFilter = document.getElementById('startDate').valueAsDate;
+        if (startDateFilter) {
+            startDateFilter.setHours(0, 0, 0, 0);
         }
 
+        let endDateFilter = document.getElementById('endDate').valueAsDate;
+        if (endDateFilter) {
+            endDateFilter.setHours(23, 59, 59, 999);
+        }
+
+        const dayFilters = [...document.querySelectorAll('#dayFilters input[type="checkbox"]:checked')].map(el => parseInt(el.value));
+
+
+
+        // Reset current date to start of the day
+
+
+        if (startDateFilter && currentDate < startDateFilter) {
+            return;
+        }
+
+        if (endDateFilter && currentDate > endDateFilter) {
+            return; // Skip this entry if it doesn't match the end date filter
+        }
+
+        if (!dayFilters.includes(currentDate.getDay())) {
+            return; // Skip this entry if it doesn't match the selected days filter
+        }
+
+
+
         const hour = time.split(':')[0];
+        const dayOfWeek = currentDate.getDay(); // Get day of the week
+
         hourlyData[hour] = (hourlyData[hour] || 0) + parseFloat(value);
+
+        // Initialize hourlyDataPerDay for the current day if not present
+        if (!hourlyDataPerDay[dayOfWeek]) {
+            hourlyDataPerDay[dayOfWeek] = {};
+        }
+
+        // Store hourly data for the current day
+        hourlyDataPerDay[dayOfWeek][hour] = (hourlyDataPerDay[dayOfWeek][hour] || 0) + parseFloat(value);
     });
 
     // Set start and end dates from data on initial load
     if (isInitialLoad && dates.length > 0) {
         dates.sort((a, b) => a - b); // Sort dates
-        document.getElementById('startDate').valueAsDate = dates[0];
-        document.getElementById('endDate').valueAsDate = dates[dates.length - 1];
+        const startDate = new Date(dates[0]);
+        startDate.setUTCHours(0, 0, 0, 0); // Set hours, minutes, seconds, and milliseconds to 0 in UTC
+        // Adjust start date based on local time zone offset
+        startDate.setDate(startDate.getDate() + 1);
+        document.getElementById('startDate').valueAsDate = startDate;
+
+        const lastDate = dates[dates.length - 1];
+        document.getElementById('endDate').valueAsDate = new Date(lastDate.getFullYear(), lastDate.getMonth(), lastDate.getDate(), 23, 59, 59, 999);
     }
+
     displayGraph(hourlyData);
-    calculateBestPlan(hourlyData);
+    calculateBestPlan(hourlyDataPerDay); // Pass hourlyDataPerDay to calculateBestPlan
 }
 
 function displayGraph(hourlyData) {
@@ -115,30 +154,55 @@ function displayGraph(hourlyData) {
     });
     chart.render();
 }
-async function fetchPlans() {
-    const response = await fetch('plans.json');
-    return await response.json();
-}
+let cachedPlans = null; // Cached plans
 
-async function calculateBestPlan(hourlyData) {
+async function fetchPlans() {
+    if (cachedPlans === null) {
+        const response = await fetch('plans.json');
+        cachedPlans = await response.json();
+    }
+    return cachedPlans;
+}
+window.onload = async function() {
+    try {
+        await fetchPlans();
+    } catch (error) {
+        console.error("Error fetching plans:", error);
+    }
+};
+
+async function calculateBestPlan(hourlyDataPerDay) {
     const plans = await fetchPlans(); // Fetch plans from server
 
     let totalKwhFreePerPlan = plans.map(plan => ({...plan, totalKwhFree: 0}));
 
-    Object.entries(hourlyData).forEach(([hour, kwh]) => {
-        const hourInt = parseInt(hour); // Ensure hour is an integer
+    // Iterate over each day of the week
+    for (let dayOfWeek in hourlyDataPerDay) {
+        if (hourlyDataPerDay.hasOwnProperty(dayOfWeek)) {
+            // Convert dayOfWeek to a number for comparison
+            const dayOfWeekInt = parseInt(dayOfWeek);
 
-        totalKwhFreePerPlan.forEach(plan => {
-            plan.applicable_hours.forEach(planHour => {
-                if (hourInt === planHour) {
-                    plan.totalKwhFree += kwh * (plan.discount[0] / 100); // Assuming single discount for simplicity
-                }
+            // Iterate over hourly data for the current day
+            Object.entries(hourlyDataPerDay[dayOfWeek]).forEach(([hour, kwh]) => {
+                const hourInt = parseInt(hour); // Ensure hour is an integer
+
+                // Update totalKwhFreePerPlan only if the plan's day of the week matches the current day
+                totalKwhFreePerPlan.forEach(plan => {
+                    if (plan.days_of_week.includes(dayOfWeekInt)) {
+                        plan.applicable_hours.forEach(planHour => {
+                            if (hourInt === planHour) {
+                                plan.totalKwhFree += kwh * (plan.discount[0] / 100); // Assuming single discount for simplicity
+                            }
+                        });
+                    }
+                });
             });
-        });
-    });
+        }
+    }
 
     displayPlanResults(totalKwhFreePerPlan);
 }
+
 
 function displayPlanResults(totalKwhFreePerPlan) {
     // Sort plans by the highest savings
@@ -220,8 +284,7 @@ function formatDaysOfWeek(days) {
     if (days.length === 7) {
         return 'All';
     } else {
-        // Adjust for one-based indexing of days
-        return days.map(day => dayNames[(day - 1) % 7]).join(', ');
+        return days.map(day => dayNames[day % 7]).join(', ');
     }
 }
 

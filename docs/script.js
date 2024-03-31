@@ -3,15 +3,14 @@ document.getElementById("fileInput").addEventListener("change", function (event)
   readAndProcessFile(event.target.files[0]);
 });
 
-// Detects if the user has set their system to use dark mode
-const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-console.log("Dark mode : ", prefersDarkMode);
-// Add or remove the 'dark' class on the body tag based on the preference
-if (prefersDarkMode) {
-  // change bg variable
-  document.documentElement.style.setProperty("--bg-color", "#333");
-  document.documentElement.style.setProperty("--text-color", "#fff");
-}
+// // Detects if the user has set their system to use dark mode
+// const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+// if (prefersDarkMode) {
+//   // change bg variable
+//   document.documentElement.style.setProperty("--bg-color", "#333");
+//   document.documentElement.style.setProperty("--text-color", "#fff");
+//   document.querySelector("body > main > section.collapsible-section.my-8.rounded-lg > div.collapsible-content.bg-white.overflow-hidden.rounded-lg > p").setProperty("--text-color", "#fff");
+// }
 
 // Configure the drop zone
 const dropZone = document.getElementById("dropZone");

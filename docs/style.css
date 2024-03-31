@@ -1,9 +1,37 @@
+:root {
+    /* Base (Light Theme) */
+    --bg-color: #f0f0f0;
+    --text-color: #333;
+    --header-text-color: #505050;
+    --link-color: #0000EE; /* Default link color for light mode */
+    --link-hover-color: #007bff; /* Bright link color for light mode */
+    --border-color: #ccc;
+    --section-bg-color: #ffffff; /* Background for sections like collapsible content */
+    --footer-bg-color: #f1f1f1; /* Light theme footer background */
+    --footer-text-color: #333; /* Light theme footer text */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Dark Theme */
+        --bg-color: #333;
+        --text-color: #fff;
+        --header-text-color: #CCCCCC;
+        --link-color: #9ecbff; /* Default link color in dark mode for better visibility */
+        --link-hover-color: #58a6ff; /* Bright link color for dark mode */
+        --border-color: #444; /* Dark theme border color */
+        --section-bg-color: #242424; /* Dark theme section background */
+        --footer-bg-color: #333;
+        --footer-text-color: #E0E0E0;
+    }
+}
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    text-align: center;
     background-color: var(--bg-color);
     color: var(--text-color);
-    text-align: center;
 }
 
 .container {
@@ -12,117 +40,73 @@ body {
     padding: 0 10px;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
+
+.header, .footer {
+    padding: 20px 0;
+    background-color: var(--section-bg-color);
+    color: var(--text-color);
 }
 
-.logo, nav a {
-    color: var(--header-text-color);
+.nav a, .footer a {
+    color: var(--link-color);
 }
 
-nav a:hover {
+.nav a:hover, .footer a:hover {
     color: var(--link-hover-color);
 }
 
 .file-drop-zone {
-    border: 2px dashed #ccc;
+    border: 2px dashed var(--border-color);
     padding: 20px;
     cursor: pointer;
     margin-top: 20px;
+    background-color: var(--section-bg-color);
+    color: var(--text-color);
 }
 
-input[type="file"] {
-    display: none;
-}
-
-.collapsible-header {
-    cursor: pointer;
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin-top: 20px;
+.collapsible-section, .collapsible-header, .collapsible-content {
+    background-color: var(--section-bg-color);
+    color: var(--text-color);
+    border-color: var(--border-color);
 }
 
 .collapsible-header .arrow {
     transition: transform 0.3s ease;
 }
 
-.collapsible-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out;
-    text-align: left; /* Ensures text aligns left */
-    padding: 10px; /* Adds padding around the content */
+input[type="date"], select {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
 }
 
-.collapsible-content p {
-    margin: 10px 0; /* Adds top and bottom margin for paragraphs */
-    padding-left: 15px; /* Adds left padding to align text start */
-}
-
-
-.filter-options {
-    margin-top: 20px;
-}
-
-#chartContainer {
-    height: 370px;
-    width: 100%;
-    margin-top: 20px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
+#chartContainer, #csvDetails, #filters {
+    background-color: var(--section-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 20px;
     margin-top: 20px;
 }
 
 table, th, td {
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     padding: 8px;
-}
-
-:root {
-    --bg-color: #f0f0f0;
-    --text-color: #333;
-    --header-text-color: #505050;
-    --link-hover-color: #ddd;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-color: #2c2c2c;
-        --text-color: #c7c7c7;
-        --header-text-color: #b8b8b8;
-        --link-hover-color: #aaa;
-    }
-
-    table, th, td {
-        border-color: #888;
-    }
 }
 
 @media screen and (max-width: 768px) {
     .header {
         flex-direction: column;
     }
+}
 
-    .collapsible-header, .file-drop-zone {
-        padding: 15px;
-    }
-
-    #chartContainer {
-        height: 300px;
-    }
-
-    .filter-options, .csv-details {
-        text-align: left;
-    }
+footer {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin-top: 30px;
+    padding: 20px;
+    text-align: center;
 }
 
 #disclaimer {
-    color: red;
+    color: var(--footer-text-color);
 }
-

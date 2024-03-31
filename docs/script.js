@@ -332,27 +332,9 @@ function formatApplicableHours(hours) {
   if (hours.length === 24) {
     return "All";
   }
-
-  // Normalize hours by sorting and handling the midnight wrap-around
-  let normalizedHours = hours.map((hour) => (hour === 0 ? 24 : hour)).sort((a, b) => a - b);
-
   // Find the continuous range, assuming sorted hours
-  let start = normalizedHours[0];
-  let end = start;
-  let foundBreak = false;
-
-  for (let i = 1; i < normalizedHours.length; i++) {
-    // If we find a non-consecutive hour and haven't found a break yet, mark the end
-    if (normalizedHours[i] !== end + 1 && !foundBreak) {
-      foundBreak = true;
-    }
-    end = normalizedHours[i];
-  }
-
-  // Adjust for wrapping by subtracting 24 from the end if it exceeds 24
-  if (end === 24) end = 0;
-
-  // Format the output string
+  let start = hours[0]
+  let end = hours[hours.length - 1];
   return `from ${formatHour(start)} until ${formatHour(end + 1)}`; // +1 to end hour to make it inclusive
 }
 

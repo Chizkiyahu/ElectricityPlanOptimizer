@@ -194,7 +194,7 @@ function displayGraph(hourlyData) {
     data: {
       labels: labels,
       datasets: [{
-        label: 'Hourly Electricity Usage',
+        label: 'צריכת חשמל לפי שעה',
         data: dataPoints,
         backgroundColor: dataPoints.map(dp => dp.backgroundColor),
       }]
@@ -205,13 +205,13 @@ function displayGraph(hourlyData) {
           beginAtZero: true,
           title: {
             display: true,
-            text: 'Usage (kWh)'
+            text: 'שימוש (kWh)'
           }
         },
         x: {
           title: {
             display: true,
-            text: 'Time'
+            text: 'שעה'
           }
         }
       },
@@ -221,7 +221,7 @@ function displayGraph(hourlyData) {
         },
         title: {
           display: true,
-          text: 'Hourly Electricity Usage'
+          text: 'צריכת חשמל לפי שעה'
         }
       }
     }
@@ -299,12 +299,12 @@ function displayPlanResults(totalKwhFreePerPlan) {
                      </tr>`;
 
   totalKwhFreePerPlan.forEach((plan, index) => {
-    const rowClass = index === 0 ? ' class="best-plan"' : ""; // Highlight for the first row
+    const rowClass = index === 0 ? ' class="best-plan"' : "";
 
     tableHTML += `<tr${rowClass}>
                         <td>${index + 1}</td>
                         <td>${plan.company_name}</td>
-                        <td>${plan.plan_description}</td>
+                        <td><a href="${plan.plan_link}" target="_blank" class="text-blue-500 hover:underline">${plan.plan_description}</a></td>
                         <td>${formatDaysOfWeek(plan.days_of_week)}</td>
                         <td>${formatApplicableHours(plan.applicable_hours)}</td>
                         <td>${plan.discount.join("/") + "%"}</td>

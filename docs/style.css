@@ -9,6 +9,10 @@
     --section-bg-color: #ffffff; /* Background for sections like collapsible content */
     --footer-bg-color: #f1f1f1; /* Light theme footer background */
     --footer-text-color: #333; /* Light theme footer text */
+    --best-plan-bg-light: #ffffcc; /* Light yellow for light mode */
+    --best-plan-text-light: #000000; /* Black text for light mode */
+    --best-plan-bg-dark: #333300; /* Darker yellow/green for dark mode */
+    --best-plan-text-dark: #ffffff; /* White text for dark mode */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,8 +27,17 @@
         --section-bg-color: #242424; /* Dark theme section background */
         --footer-bg-color: #333;
         --footer-text-color: #E0E0E0;
+        --best-plan-bg: var(--best-plan-bg-dark);
+        --best-plan-text: var(--best-plan-text-dark);
     }
 }
+
+/* Light mode as default if prefers-color-scheme is not supported */
+:root {
+    --best-plan-bg: var(--best-plan-bg-light);
+    --best-plan-text: var(--best-plan-text-light);
+}
+
 
 body {
     margin: 0;
@@ -110,4 +123,9 @@ footer {
 
 #disclaimer {
     color: var(--footer-text-color);
+}
+
+.best-plan {
+    background-color: var(--best-plan-bg);
+    color: var(--best-plan-text);
 }

@@ -3,15 +3,6 @@ document.getElementById("fileInput").addEventListener("change", function (event)
   readAndProcessFile(event.target.files[0]);
 });
 
-// // Detects if the user has set their system to use dark mode
-// const prefersDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
-// if (prefersDarkMode) {
-//   // change bg variable
-//   document.documentElement.style.setProperty("--bg-color", "#333");
-//   document.documentElement.style.setProperty("--text-color", "#fff");
-//   document.querySelector("body > main > section.collapsible-section.my-8.rounded-lg > div.collapsible-content.bg-white.overflow-hidden.rounded-lg > p").setProperty("--text-color", "#fff");
-// }
-
 // Configure the drop zone
 const dropZone = document.getElementById("dropZone");
 dropZone.addEventListener("dragover", function (event) {
@@ -295,16 +286,16 @@ function displayPlanResults(totalKwhFreePerPlan) {
   totalKwhFreePerPlan.sort((a, b) => b.totalKwhFree - a.totalKwhFree);
 
   const resultsContainer = document.getElementById("bestPlan");
-  let tableHTML = `<h3>Free kWh per Plan</h3>
+  let tableHTML = `<h3>טבלת חיסכון</h3>
                      <table>
                      <tr>
-                        <th>Rank</th>
-                        <th>Company Name</th>
-                        <th>Plan Description</th>
-                        <th>Days of the Week</th>
-                        <th>Hours</th>
-                        <th>% Discount</th>
-                        <th>Free kWh</th>
+                        <th>דירוג</th>
+                        <th>שם חברה</th>
+                        <th>שם תוכנית</th>
+                        <th>בימים</th>
+                        <th>בשעות</th>
+                        <th>% הנחה</th>
+                        <th> kWh שנחסך</th>
                      </tr>`;
 
   totalKwhFreePerPlan.forEach((plan, index) => {
@@ -330,12 +321,12 @@ function formatApplicableHours(hours) {
 
   // Special case for 24-hour coverage
   if (hours.length === 24) {
-    return "All";
+    return "הכל";
   }
   // Find the continuous range, assuming sorted hours
   let start = hours[0]
   let end = hours[hours.length - 1];
-  return `from ${formatHour(start)} until ${formatHour(end + 1)}`; // +1 to end hour to make it inclusive
+  return `מ ${formatHour(start)} עד ${formatHour(end + 1)}`;
 }
 
 function formatHour(hour) {
@@ -345,7 +336,7 @@ function formatHour(hour) {
 }
 
 function formatDaysOfWeek(days) {
-  const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const dayNames = ["א", "ב", "ג", "ד", "ה", "ו", "שבת"];
 
   if (days.length === 7) {
     return "All";
@@ -354,20 +345,31 @@ function formatDaysOfWeek(days) {
   }
 }
 document.addEventListener("DOMContentLoaded", function () {
-  document.querySelector(".collapsible-header").addEventListener("click", function () {
-    const content = this.nextElementSibling;
-    if (!content.style.maxHeight || content.style.maxHeight === "0px") {
-      content.style.maxHeight = content.scrollHeight + "px";
-      this.querySelector(".arrow").innerHTML = "&#9650;"; // Change arrow direction up
-    } else {
-      content.style.maxHeight = "0px";
-      this.querySelector(".arrow").innerHTML = "&#9660;"; // Change arrow direction down
-    }
+  // Select all collapsible headers and iterate over them
+  document.querySelectorAll(".collapsible-header").forEach(function(header) {
+    header.addEventListener("click", function () {
+      const content = this.nextElementSibling;
+      if (!content.style.maxHeight || content.style.maxHeight === "0px") {
+        // Set the maxHeight for all contents to "0px" and reset arrows to down
+        document.querySelectorAll(".collapsible-content").forEach(function(cont) {
+          cont.style.maxHeight = "0px";
+        });
+        document.querySelectorAll(".arrow").forEach(function(arrow) {
+          arrow.innerHTML = "&#9660;"; // Change all arrows direction down
+        });
+        // Then open the clicked one
+        content.style.maxHeight = content.scrollHeight + "px";
+        this.querySelector(".arrow").innerHTML = "&#9650;"; // Change arrow direction up
+      } else {
+        content.style.maxHeight = "0px";
+        this.querySelector(".arrow").innerHTML = "&#9660;"; // Change arrow direction down
+      }
+    });
   });
 
-  // Initialize the collapsible content to be collapsed
-  const initialContent = document.querySelector(".collapsible-content");
-  if (initialContent) {
-    initialContent.style.maxHeight = "0px"; // Ensure it starts collapsed
-  }
+  // Initialize all the collapsible contents to be collapsed
+  document.querySelectorAll(".collapsible-content").forEach(function(content) {
+    content.style.maxHeight = "0px"; // Ensure it starts collapsed
+  });
 });
+

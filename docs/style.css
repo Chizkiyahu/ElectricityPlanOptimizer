@@ -30,6 +30,7 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     text-align: center;
+    direction: rtl;
     background-color: var(--bg-color);
     color: var(--text-color);
 }

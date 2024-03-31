@@ -165,57 +165,79 @@ function displayCsvDetails(lines, startDate, endDate, sumKwh) {
   document.getElementById("totalKwh").textContent = sumKwh.toFixed(2);
 }
 
+let myChart = null; // This variable will hold the chart instance
+
 function displayGraph(hourlyData) {
+  const canvasElement = document.getElementById('myChart');
+  const ctx = canvasElement.getContext('2d');
+
+  // Check if a chart instance already exists
+  if (myChart) {
+    myChart.destroy(); // Destroy the existing chart
+  }
+
+  // Proceed with creating a new chart instance
   const dataEntries = Object.entries(hourlyData);
   dataEntries.sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
+
+  const labels = dataEntries.map(([hour, _]) => hour);
   const values = dataEntries.map(([_, value]) => value);
   const minValue = Math.min(...values);
   const maxValue = Math.max(...values);
 
-  // Function to interpolate between green and red based on value
   function getColorForValue(value) {
-    // Normalize value between 0 and 1
     const normalized = (value - minValue) / (maxValue - minValue);
-    // Calculate red and green components based on normalized value
-    // Green to Red gradient: (1-normalized) for green and normalized for red
     const red = Math.round(normalized * 255);
     const green = Math.round((1 - normalized) * 255);
-    // Return RGB color string
     return `rgb(${red}, ${green}, 0)`;
   }
 
-  // Map hourlyData to dataPoints with color based on value
-  let dataPoints = dataEntries.map(([hour, value]) => ({
-    label: hour,
+  // Prepare data for Chart.js
+  const dataPoints = values.map((value, index) => ({
+    x: labels[index],
     y: value,
-    color: getColorForValue(value), // Dynamic color based on value
+    backgroundColor: getColorForValue(value), // Use for dynamic coloring
   }));
 
-  const chartTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark1" : "light2";
-
-  const chart = new CanvasJS.Chart("chartContainer", {
-    animationEnabled: true,
-    theme: chartTheme,
-    title: {
-      text: "Hourly Electricity Usage",
+  myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Hourly Electricity Usage',
+        data: dataPoints,
+        backgroundColor: dataPoints.map(dp => dp.backgroundColor),
+      }]
     },
-    axisX: {
-      title: "Time",
-      interval: 1,
-    },
-    axisY: {
-      title: "Usage (kWh)",
-      includeZero: true,
-    },
-    data: [
-      {
-        type: "column",
-        dataPoints: dataPoints,
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Usage (kWh)'
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: 'Time'
+          }
+        }
       },
-    ],
+      plugins: {
+        legend: {
+          display: false // Set to true if you want to display the label
+        },
+        title: {
+          display: true,
+          text: 'Hourly Electricity Usage'
+        }
+      }
+    }
   });
-  chart.render();
 }
+
 let cachedPlans = null; // Cached plans
 
 async function fetchPlans() {

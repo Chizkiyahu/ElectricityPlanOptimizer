@@ -122,3 +122,15 @@ a {
     font-weight: bold;
     margin-top: 20px;
 }
+
+.year-selection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.year-option {
+    display: flex;
+    align-items: center;
+}

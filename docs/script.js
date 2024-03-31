@@ -1,4 +1,3 @@
-// Initial setup to add event listeners to the file input and filters
 document.getElementById('fileInput').addEventListener('change', function(event) {
     const fileReader = new FileReader();
     fileReader.onload = function(fileLoadedEvent) {
@@ -25,6 +24,7 @@ function applyFiltersAutomatically() {
 document.getElementById('startDate').addEventListener('change', applyFiltersAutomatically);
 document.getElementById('endDate').addEventListener('change', applyFiltersAutomatically);
 document.querySelectorAll('#dayFilters input').forEach(input => input.addEventListener('change', applyFiltersAutomatically));
+document.getElementById('yearSelection').addEventListener('change', applyFiltersAutomatically);
 
 function processData(csvData, isInitialLoad) {
     const lines = csvData.split('\n');
@@ -199,6 +199,8 @@ window.onload = async function() {
 
 async function calculateBestPlan(hourlyDataPerDay) {
     const plans = await fetchPlans(); // Fetch plans from server
+    const yearSelection = document.getElementById('yearSelection').value; // Get the selected year index
+    const selectedYearIndex = parseInt(yearSelection, 10); // Ensure it's an integer
 
     let totalKwhFreePerPlan = plans.map(plan => ({...plan, totalKwhFree: 0}));
 
@@ -217,7 +219,9 @@ async function calculateBestPlan(hourlyDataPerDay) {
                     if (plan.days_of_week.includes(dayOfWeekInt)) {
                         plan.applicable_hours.forEach(planHour => {
                             if (hourInt === planHour) {
-                                plan.totalKwhFree += kwh * (plan.discount[0] / 100); // Assuming single discount for simplicity
+                                // Determine which discount index to use
+                                const discountIndex = selectedYearIndex < plan.discount.length ? selectedYearIndex : plan.discount.length - 1;
+                                plan.totalKwhFree += kwh * (plan.discount[discountIndex] / 100);
                             }
                         });
                     }
@@ -256,7 +260,7 @@ function displayPlanResults(totalKwhFreePerPlan) {
                         <td>${plan.plan_description}</td>
                         <td>${formatDaysOfWeek(plan.days_of_week)}</td>
                         <td>${formatApplicableHours(plan.applicable_hours)}</td>
-                        <td>${plan.discount.join('% & ') + '%'}</td>
+                        <td>${plan.discount.join('/') + '%'}</td>
                         <td>${plan.totalKwhFree.toFixed(2)}</td>
                       </tr>`;
     });

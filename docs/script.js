@@ -339,7 +339,7 @@ function formatDaysOfWeek(days) {
   const dayNames = ["א", "ב", "ג", "ד", "ה", "ו", "שבת"];
 
   if (days.length === 7) {
-    return "All";
+    return "הכל";
   } else {
     return days.map((day) => dayNames[day % 7]).join(", ");
   }

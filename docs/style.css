@@ -129,3 +129,22 @@ footer {
     background-color: var(--best-plan-bg);
     color: var(--best-plan-text);
 }
+
+
+@media screen and (max-width: 768px) {
+    .header {
+        flex-direction: column;
+    }
+
+    .collapsible-header, .file-drop-zone {
+        padding: 15px;
+    }
+
+    #chartContainer {
+        height: 300px;
+    }
+
+    .filter-options, .csv-details {
+        text-align: left;
+    }
+}

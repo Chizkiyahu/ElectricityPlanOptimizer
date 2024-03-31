@@ -178,7 +178,7 @@ function displayGraph(hourlyData) {
 
     // Map hourlyData to dataPoints with color based on value
     let dataPoints = dataEntries.map(([hour, value]) => ({
-        label: hour + ':00',
+        label: hour,
         y: value,
         color: getColorForValue(value) // Dynamic color based on value
     }));

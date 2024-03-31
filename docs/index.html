@@ -2,89 +2,95 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website with Header</title>
-    <script src="canvasjs.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="header">
-    <div class="logo">Electricity Usage Analyzer</div>
-    <nav>
-        <a href="https://github.com/Chizkiyahu/ElectricityPlanOptimizer" target="_blank"><i class="fab fa-github"></i></a>
-    </nav>
-</div>
-
-
-<div id="dropZone" style="border: 2px dashed #ccc; padding: 20px; text-align: center; cursor: pointer;">
-    Drag and drop your file here or click to select a file.
-    <input type="file" id="fileInput" accept=".csv" class="file-input" style="display: none;">
-</div>
-
-<div class="collapsible-instructions">
-    <div class="collapsible-header">
-        <span>How to obtain the CSV file for analysis</span> <span class="arrow">&#9660;</span>
+<header>
+    <div class="container header">
+        <div class="logo">Electricity Usage Analyzer</div>
+        <nav>
+            <a href="https://github.com/Chizkiyahu/ElectricityPlanOptimizer" target="_blank"><i class="fab fa-github"></i></a>
+        </nav>
     </div>
-    <div class="collapsible-content">
-        <p>
-            To obtain the CSV file for analysis, please follow these steps:<br>
-            1. Log in to <a href="https://www.iec.co.il/consumption-info-menu" target="_blank">https://www.iec.co.il/consumption-info-menu</a>.<br>
-            2. Click on "Up-to-date consumption status" button.<br>
-            3. Click on "Get Excel file of consumption data from the past year by email" button.<br>
-            4. Click on the "Send email" button.<br>
-            5. Finally, download .csv from the email.
-        </p>
-    </div>
-</div>
+</header>
 
-
-
-<div id="csvDetails">
-    <div><strong>Customer Name:</strong> <span id="customerName"></span></div>
-    <div><strong>Customer Address:</strong> <span id="customerAddress"></span></div>
-    <div><strong>Meter Type:</strong> <span id="meterType"></span></div>
-    <div><strong>Meter Number:</strong> <span id="meterNumber"></span></div>
-    <div><strong>Start Date:</strong> <span id="startDateDisplay"></span></div>
-    <div><strong>End Date:</strong> <span id="endDateDisplay"></span></div>
-    <div><strong>Total Consumption (kWh):</strong> <span id="totalKwh"></span></div>
-</div>
-
-<div id="filters">
-    <h2>Filter Options</h2>
-    <div>
-        <label for="startDate">Start Date:</label>
-        <input type="date" id="startDate">
+<main class="container">
+    <div id="dropZone" class="file-drop-zone">
+        Drag and drop your file here or click to select a file.
+        <input type="file" id="fileInput" accept=".csv">
     </div>
-    <div>
-        <label for="endDate">End Date:</label>
-        <input type="date" id="endDate">
-    </div>
-    <div id="dayFilters">
-        <label><input type="checkbox" value="0" checked>Sun</label>
-        <label><input type="checkbox" value="1" checked>Mon</label>
-        <label><input type="checkbox" value="2" checked>Tue</label>
-        <label><input type="checkbox" value="3" checked>Wed</label>
-        <label><input type="checkbox" value="4" checked>Thu</label>
-        <label><input type="checkbox" value="5" checked>Fri</label>
-        <label><input type="checkbox" value="6" checked>Sat</label>
-    </div>
-    <div>
-        <label for="yearSelection">Year Selection:</label>
-        <select id="yearSelection">
-            <option value="0" selected>First Year</option>
-            <option value="1">Second Year</option>
-            <option value="2">Third Year</option>
-        </select>
-    </div>
-</div>
-<div id="chartContainer"></div>
-<div id="bestPlan"></div>
 
-<p id="data-privacy">All data processed by ElectricityPlanOptimizer is stored and analyzed locally on your device. No data is sent to or stored on any server.</p>
-<div id="disclaimer">
-    <p><strong>Disclaimer:</strong> The information, data, and calculations provided by this website are intended for informational purposes only. While we strive to keep the information up to date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability or availability with respect to the website or the information, products, services, or related graphics contained on the website for any purpose. Any reliance you place on such information is therefore strictly at your own risk.</p>
-</div>
+    <section class="collapsible-section">
+        <div class="collapsible-header">
+            How to obtain the CSV file for analysis <span class="arrow">&#9660;</span>
+        </div>
+        <div class="collapsible-content">
+            <p>
+                To obtain the CSV file for analysis, please follow these steps:<br>
+                1. Log in to <a href="https://www.iec.co.il/consumption-info-menu" target="_blank">https://www.iec.co.il/consumption-info-menu</a>.<br>
+                2. Click on "Up-to-date consumption status" button.<br>
+                3. Click on "Get Excel file of consumption data from the past year by email" button.<br>
+                4. Click on the "Send email" button.<br>
+                5. Finally, download .csv from the email.
+            </p>
+        </div>
+    </section>
+
+    <div id="csvDetails" class="csv-details">
+        <div><strong>Customer Name:</strong> <span id="customerName"></span></div>
+        <div><strong>Customer Address:</strong> <span id="customerAddress"></span></div>
+        <div><strong>Meter Type:</strong> <span id="meterType"></span></div>
+        <div><strong>Meter Number:</strong> <span id="meterNumber"></span></div>
+        <div><strong>Start Date:</strong> <span id="startDateDisplay"></span></div>
+        <div><strong>End Date:</strong> <span id="endDateDisplay"></span></div>
+        <div><strong>Total Consumption (kWh):</strong> <span id="totalKwh"></span></div>
+    </div>
+
+    <section id="filters" class="filter-options">
+        <h2>Filter Options</h2>
+        <div>
+            <label for="startDate">Start Date:</label>
+            <input type="date" id="startDate">
+        </div>
+        <div>
+            <label for="endDate">End Date:</label>
+            <input type="date" id="endDate">
+        </div>
+        <div id="dayFilters">
+            <label><input type="checkbox" value="0" checked>Sun</label>
+            <label><input type="checkbox" value="1" checked>Mon</label>
+            <label><input type="checkbox" value="2" checked>Tue</label>
+            <label><input type="checkbox" value="3" checked>Wed</label>
+            <label><input type="checkbox" value="4" checked>Thu</label>
+            <label><input type="checkbox" value="5" checked>Fri</label>
+            <label><input type="checkbox" value="6" checked>Sat</label>
+        </div>
+        <div>
+            <label for="yearSelection">Year Selection:</label>
+            <select id="yearSelection">
+                <option value="0" selected>First Year</option>
+                <option value="1">Second Year</option>
+                <option value="2">Third Year</option>
+            </select>
+        </div>
+    </section>
+
+    <div id="chartContainer"></div>
+    <div id="bestPlan"></div>
+</main>
+
+<footer>
+    <p id="data-privacy">All data processed by ElectricityPlanOptimizer is stored and analyzed locally on your device. No data is sent to or stored on any server.</p>
+    <div id="disclaimer">
+        <p><strong>Disclaimer:</strong> Use of the information, data, and calculations from this website is entirely at your own risk. This website does not guarantee the accuracy, reliability, or completeness of its contents.</p>
+    </div>
+</footer>
+
 <script src="script.js"></script>
+<script src="canvasjs.min.js"></script>
 </body>
 </html>

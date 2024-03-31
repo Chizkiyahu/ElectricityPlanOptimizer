@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Website with Header</title>
+    <title>Electricity Usage Analyzer</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="bg-gray-100 font-sans leading-normal tracking-normal">
+  <body class="font-sans leading-normal tracking-normal">
     <header class="bg-blue-600 p-4">
       <div class="container mx-auto flex justify-between gap-2 items-center">
         <i class="fa fa-chart-line text-white text-2xl"></i>
@@ -23,15 +24,15 @@
     </header>
 
     <main class="container mx-auto my-8 px-2">
-      <div id="dropZone" class="file-drop-zone p-4 bg-white border-dashed border-4 border-gray-200 text-center cursor-pointer rounded-lg">
+      <div id="dropZone" class="file-drop-zone p-4 border-dashed border-4 border-gray-200 text-center cursor-pointer rounded-lg">
         Drag and drop your file here or click to select a file.
         <input type="file" id="fileInput" accept=".csv" class="hidden" />
       </div>
 
       <section class="collapsible-section my-8 rounded-lg">
-        <div class="collapsible-header bg-gray-200 p-4 cursor-pointer rounded-lg">How to obtain the CSV file for analysis <span class="arrow">&#9660;</span></div>
+        <div class="collapsible-header bg-gray-200 p-4 cursor-pointer rounded-lg text-gray-700">How to obtain the CSV file for analysis <span class="arrow">&#9660;</span></div>
         <div class="collapsible-content bg-white overflow-hidden rounded-lg">
-          <p class="p-4">
+          <p class="p-4 text-gray-500">
             To obtain the CSV file for analysis, please follow these steps:<br />
             1. Log in to <a href="https://www.iec.co.il/consumption-info-menu" target="_blank" class="text-blue-500 hover:underline">https://www.iec.co.il/consumption-info-menu</a>.<br />
             2. Click on "Up-to-date consumption status" button.<br />
@@ -42,7 +43,7 @@
         </div>
       </section>
 
-      <div id="csvDetails" class="csv-details bg-white p-4 border border-gray-200 rounded-lg">
+      <div id="csvDetails" class="csv-details bg-white p-4 border border-gray-200 rounded-lg text-gray-500 text-left flex-col">
         <div><strong>Customer Name:</strong> <span id="customerName"></span></div>
         <div><strong>Customer Address:</strong> <span id="customerAddress"></span></div>
         <div><strong>Meter Type:</strong> <span id="meterType"></span></div>
@@ -52,15 +53,15 @@
         <div><strong>Total Consumption (kWh):</strong> <span id="totalKwh"></span></div>
       </div>
 
-      <section id="filters" class="filter-options my-8 rounded-lg">
+      <section id="filters" class="filter-options my-8 rounded-lg items-start flex-col flex">
         <h2 class="text-lg font-semibold">Filter Options</h2>
         <div class="my-4">
           <label for="startDate" class="block text-sm">Start Date:</label>
-          <input type="date" id="startDate" class="border border-gray-200 rounded p-2" />
+          <input type="date" id="startDate" class="border border-gray-200 rounded p-2 text-gray-700" />
         </div>
         <div class="my-4">
           <label for="endDate" class="block text-sm">End Date:</label>
-          <input type="date" id="endDate" class="border border-gray-200 rounded p-2" />
+          <input type="date" id="endDate" class="border border-gray-200 rounded p-2 text-gray-700" />
         </div>
         <div class="max-w-lg">
           <div id="dayFilters" class="grid grid-cols-7 gap-4">
@@ -97,7 +98,7 @@
 
         <div class="my-4">
           <label for="yearSelection" class="block text-sm">Year Selection:</label>
-          <select id="yearSelection" class="border border-gray-200 rounded p-2">
+          <select id="yearSelection" class="border border-gray-200 rounded p-2 text-gray-700">
             <option value="0" selected>First Year</option>
             <option value="1">Second Year</option>
             <option value="2">Third Year</option>
@@ -105,18 +106,18 @@
         </div>
       </section>
 
-      <div id="chartContainer" class="bg-white p-4 border border-gray-200 rounded-lg">
+      <div id="chartContainer" class="p-4 border border-gray-200 rounded-lg">
         <!-- the chart will be displayed here -->
       </div>
-      <div id="bestPlan" class="bg-white p-4 border border-gray-200 mt-4 rounded-lg">
+      <div id="bestPlan" class="p-4 border border-gray-200 mt-4 rounded-lg">
         <!-- the best plan will be displayed here -->
       </div>
     </main>
 
-    <footer class="bg-gray-200 mt-8 p-4 text-center rounded-lg mx-2">
+    <footer class="bg-gray-200 mt-8 p-4 text-center rounded-lg mx-2 text-gray-600">
       <p id="data-privacy">All data processed by ElectricityPlanOptimizer is stored and analyzed locally on your device. No data is sent to or stored on any server.</p>
       <div id="disclaimer" class="mt-2">
-        <p><strong>Disclaimer:</strong> Use of the information, data, and calculations from this website is entirely at your own risk. This website does not guarantee the accuracy, reliability, or completeness of its contents.</p>
+        <p class="text-red-400 font-semibold"><strong>Disclaimer:</strong> Use of the information, data, and calculations from this website is entirely at your own risk. This website does not guarantee the accuracy, reliability, or completeness of its contents.</p>
       </div>
     </footer>
 

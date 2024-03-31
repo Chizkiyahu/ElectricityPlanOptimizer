@@ -1,9 +1,9 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
+    text-align: center;
     background-color: var(--bg-color);
     color: var(--text-color);
-    text-align: center;
 }
 
 .container {
@@ -15,7 +15,7 @@ body {
 .header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    
     padding: 10px 0;
 }
 
@@ -34,10 +34,6 @@ nav a:hover {
     margin-top: 20px;
 }
 
-input[type="file"] {
-    display: none;
-}
-
 .collapsible-header {
     cursor: pointer;
     padding: 10px;
@@ -54,17 +50,12 @@ input[type="file"] {
     overflow: hidden;
     transition: max-height 0.3s ease-out;
     text-align: left; /* Ensures text aligns left */
-    padding: 10px; /* Adds padding around the content */
+    
 }
 
 .collapsible-content p {
-    margin: 10px 0; /* Adds top and bottom margin for paragraphs */
+    
     padding-left: 15px; /* Adds left padding to align text start */
-}
-
-
-.filter-options {
-    margin-top: 20px;
 }
 
 #chartContainer {

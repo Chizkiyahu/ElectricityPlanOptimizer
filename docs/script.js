@@ -1,11 +1,37 @@
+// Event listener for the file input change
 document.getElementById('fileInput').addEventListener('change', function(event) {
+    readAndProcessFile(event.target.files[0]);
+});
+
+// Configure the drop zone
+const dropZone = document.getElementById('dropZone');
+dropZone.addEventListener('dragover', function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'copy'; // Show as a copy action
+});
+
+dropZone.addEventListener('drop', function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    const files = event.dataTransfer.files; // FileList object.
+    readAndProcessFile(files[0]);
+});
+
+// Allow click on the drop zone to select file
+dropZone.addEventListener('click', function() {
+    document.getElementById('fileInput').click();
+});
+
+function readAndProcessFile(file) {
     const fileReader = new FileReader();
     fileReader.onload = function(fileLoadedEvent) {
         const text = fileLoadedEvent.target.result;
         processData(text, true); // True indicates this is the initial load
     };
-    fileReader.readAsText(event.target.files[0], "UTF-8");
-});
+    fileReader.readAsText(file, "UTF-8");
+}
+
 
 // Function to apply filters automatically without a dedicated button
 function applyFiltersAutomatically() {
@@ -317,6 +343,20 @@ function formatDaysOfWeek(days) {
         return days.map(day => dayNames[day % 7]).join(', ');
     }
 }
+
+document.querySelector('.collapsible-header').addEventListener('click', function() {
+    const content = this.nextElementSibling;
+    if (content.style.maxHeight && content.style.maxHeight !== "0px") {
+        content.style.maxHeight = "0px"; // This will close it smoothly
+        this.querySelector('.arrow').innerHTML = '&#9660;'; // Change arrow direction down
+    } else {
+        content.style.maxHeight = content.scrollHeight + "px"; // Open by setting max-height to the scroll height
+        this.querySelector('.arrow').innerHTML = '&#9650;'; // Change arrow direction up
+    }
+    this.classList.toggle('active'); // Toggle the 'active' class for the header
+});
+
+
 
 
 

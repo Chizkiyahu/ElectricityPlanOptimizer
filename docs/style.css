@@ -134,3 +134,33 @@ a {
     display: flex;
     align-items: center;
 }
+
+.collapsible-header {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.collapsible-header span.arrow {
+    float: right;
+    transition: transform 0.3s ease;
+}
+
+.collapsible-content {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    max-height: 0;
+    text-align: left;
+}
+
+.collapsible-content p {
+    padding: 0 15px;
+    margin-top: 0;
+}
+
+/* Active state for the arrow when the content is shown */
+.collapsible-header.active .arrow {
+    transform: rotate(180deg);
+}

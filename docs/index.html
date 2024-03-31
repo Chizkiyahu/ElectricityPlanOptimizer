@@ -16,15 +16,30 @@
     </nav>
 </div>
 
-<p>
-    To obtain the CSV file for analysis, please follow these steps:<br>
-    1. Log in to <a href="https://www.iec.co.il/consumption-info-menu" target="_blank">IEC Consumption Info</a>.<br>
-    2. Click on "Up-to-date consumption status" button.<br>
-    3. Click on "Get Excel file of consumption data from the past year by email" button.<br>
-    4. Click on the "Send email" button.<br>
-    5. Finally, download .csv from the email.
-</p>
-<input type="file" id="fileInput" accept=".csv" class="file-input">
+
+<div id="dropZone" style="border: 2px dashed #ccc; padding: 20px; text-align: center; cursor: pointer;">
+    Drag and drop your file here or click to select a file.
+    <input type="file" id="fileInput" accept=".csv" class="file-input" style="display: none;">
+</div>
+
+<div class="collapsible-instructions">
+    <div class="collapsible-header">
+        <span>How to obtain the CSV file for analysis</span> <span class="arrow">&#9660;</span>
+    </div>
+    <div class="collapsible-content">
+        <p>
+            To obtain the CSV file for analysis, please follow these steps:<br>
+            1. Log in to <a href="https://www.iec.co.il/consumption-info-menu" target="_blank">https://www.iec.co.il/consumption-info-menu</a>.<br>
+            2. Click on "Up-to-date consumption status" button.<br>
+            3. Click on "Get Excel file of consumption data from the past year by email" button.<br>
+            4. Click on the "Send email" button.<br>
+            5. Finally, download .csv from the email.
+        </p>
+    </div>
+</div>
+
+
+
 <div id="csvDetails">
     <div><strong>Customer Name:</strong> <span id="customerName"></span></div>
     <div><strong>Customer Address:</strong> <span id="customerAddress"></span></div>

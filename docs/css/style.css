@@ -1,30 +1,30 @@
 :root {
     /* Base (Light Theme) */
     --bg-color: #f0f0f0;
-    --text-color: #333;
+    --text-color: #222;
     --header-text-color: #505050;
-    --link-color: #0000EE; /* Default link color for light mode */
-    --link-hover-color: #007bff; /* Bright link color for light mode */
+    --link-color: #0000CC;
+    --link-hover-color: #007bff;
     --border-color: #ccc;
-    --section-bg-color: #ffffff; /* Background for sections like collapsible content */
-    --footer-bg-color: #f1f1f1; /* Light theme footer background */
-    --footer-text-color: #333; /* Light theme footer text */
-    --best-plan-bg-light: #ffffcc; /* Light yellow for light mode */
-    --best-plan-text-light: #000000; /* Black text for light mode */
-    --best-plan-bg-dark: #333300; /* Darker yellow/green for dark mode */
-    --best-plan-text-dark: #ffffff; /* White text for dark mode */
+    --section-bg-color: #ffffff;
+    --footer-bg-color: #f1f1f1;
+    --footer-text-color: #222;
+    --best-plan-bg-light: #ffffcc;
+    --best-plan-text-light: #000000;
+    --best-plan-bg-dark: #333300;
+    --best-plan-text-dark: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         /* Dark Theme */
-        --bg-color: #333;
-        --text-color: #fff;
+        --bg-color: #383838;
+        --text-color: #ffffff;
         --header-text-color: #CCCCCC;
-        --link-color: #9ecbff; /* Default link color in dark mode for better visibility */
-        --link-hover-color: #58a6ff; /* Bright link color for dark mode */
-        --border-color: #444; /* Dark theme border color */
-        --section-bg-color: #242424; /* Dark theme section background */
+        --link-color: #9ecbff;
+        --link-hover-color: #58a6ff;
+        --border-color: #444;
+        --section-bg-color: #242424;
         --footer-bg-color: #333;
         --footer-text-color: #E0E0E0;
         --best-plan-bg: var(--best-plan-bg-dark);
@@ -37,6 +37,7 @@
     --best-plan-bg: var(--best-plan-bg-light);
     --best-plan-text: var(--best-plan-text-light);
 }
+
 
 
 body {

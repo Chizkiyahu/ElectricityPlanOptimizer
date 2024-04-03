@@ -232,7 +232,7 @@ let cachedPlans = null; // Cached plans
 
 async function fetchPlans() {
   if (cachedPlans === null) {
-    const response = await fetch("plans.json");
+    const response = await fetch("data/plans.json");
     cachedPlans = await response.json();
   }
   return cachedPlans;

@@ -344,32 +344,4 @@ function formatDaysOfWeek(days) {
     return days.map((day) => dayNames[day % 7]).join(", ");
   }
 }
-document.addEventListener("DOMContentLoaded", function () {
-  // Select all collapsible headers and iterate over them
-  document.querySelectorAll(".collapsible-header").forEach(function(header) {
-    header.addEventListener("click", function () {
-      const content = this.nextElementSibling;
-      if (!content.style.maxHeight || content.style.maxHeight === "0px") {
-        // Set the maxHeight for all contents to "0px" and reset arrows to down
-        document.querySelectorAll(".collapsible-content").forEach(function(cont) {
-          cont.style.maxHeight = "0px";
-        });
-        document.querySelectorAll(".arrow").forEach(function(arrow) {
-          arrow.innerHTML = "&#9660;"; // Change all arrows direction down
-        });
-        // Then open the clicked one
-        content.style.maxHeight = content.scrollHeight + "px";
-        this.querySelector(".arrow").innerHTML = "&#9650;"; // Change arrow direction up
-      } else {
-        content.style.maxHeight = "0px";
-        this.querySelector(".arrow").innerHTML = "&#9660;"; // Change arrow direction down
-      }
-    });
-  });
-
-  // Initialize all the collapsible contents to be collapsed
-  document.querySelectorAll(".collapsible-content").forEach(function(content) {
-    content.style.maxHeight = "0px"; // Ensure it starts collapsed
-  });
-});
 

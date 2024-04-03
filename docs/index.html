@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ניתוח שימוש בחשמל</title>
 <!--  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet" />-->
-<!--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <link href="css/tailwind.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="css/all.min.css" />
+<!--  <link rel="stylesheet" href="css/all.min.css" />-->
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="font-sans leading-normal tracking-normal">
@@ -57,6 +57,37 @@
         5. הורד הקובץ .csv מהאימייל.
       </p>
     </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Select all collapsible headers and iterate over them
+        document.querySelectorAll(".collapsible-header").forEach(function(header) {
+          header.addEventListener("click", function () {
+            const content = this.nextElementSibling;
+            if (!content.style.maxHeight || content.style.maxHeight === "0px") {
+              // Set the maxHeight for all contents to "0px" and reset arrows to down
+              document.querySelectorAll(".collapsible-content").forEach(function(cont) {
+                cont.style.maxHeight = "0px";
+              });
+              document.querySelectorAll(".arrow").forEach(function(arrow) {
+                arrow.innerHTML = "&#9660;"; // Change all arrows direction down
+              });
+              // Then open the clicked one
+              content.style.maxHeight = content.scrollHeight + "px";
+              this.querySelector(".arrow").innerHTML = "&#9650;"; // Change arrow direction up
+            } else {
+              content.style.maxHeight = "0px";
+              this.querySelector(".arrow").innerHTML = "&#9660;"; // Change arrow direction down
+            }
+          });
+        });
+
+        // Initialize all the collapsible contents to be collapsed
+        document.querySelectorAll(".collapsible-content").forEach(function(content) {
+          content.style.maxHeight = "0px"; // Ensure it starts collapsed
+        });
+      });
+
+    </script>
   </section>
 
   <div id="csvDetails" class="csv-details bg-white p-4 border border-gray-200 rounded-lg text-gray-500 text-right flex-col">

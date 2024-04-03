@@ -5,9 +5,9 @@
   <meta name="description" content="אתר זה מאפשר למשתמשים לנתח את השימוש בחשמל שלהם ולמצוא את התוכנית הכי זולה בהתאם להרגלי צריכתם. האתר מספק כלים להעלאת נתוני צריכה, ניתוח נתונים, והצגת התוכניות האופטימליות." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ניתוח שימוש בחשמל</title>
-  <link rel="stylesheet" href="css/style.css" />
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="font-sans leading-normal tracking-normal">
 <header class="bg-blue-600 p-4">
@@ -19,13 +19,11 @@
     </nav>
   </div>
 </header>
-
 <main class="container mx-auto my-8 px-2">
   <div id="dropZone" class="file-drop-zone p-4 border-dashed border-4 border-gray-200 text-center cursor-pointer rounded-lg">
     גרור ושחרר את הקובץ CSV כאן או לחץ כדי לבחור קובץ.
     <input type="file" id="fileInput" accept=".csv" class="hidden" />
   </div>
-
   <section class="collapsible-section my-8 rounded-lg">
     <div class="collapsible-header bg-gray-200 p-4 cursor-pointer rounded-lg "><span class="arrow">&#9660;</span> דרישות מקדימות  </div>
     <div class="collapsible-content bg-white overflow-hidden rounded-lg">
@@ -36,7 +34,6 @@
       </p>
     </div>
   </section>
-
   <section class="collapsible-section my-8 rounded-lg">
     <div class="collapsible-header bg-gray-200 p-4 cursor-pointer rounded-lg "><span class="arrow">&#9660;</span> מטרת האתר  </div>
     <div class="collapsible-content bg-white overflow-hidden rounded-lg">
@@ -46,13 +43,12 @@
       </p>
     </div>
   </section>
-
   <section class="collapsible-section my-8 rounded-lg">
     <div class="collapsible-header bg-gray-200 p-4 cursor-pointer rounded-lg "><span class="arrow">&#9660;</span> איך להוריד את קובץ הנתונים CSV </div>
     <div class="collapsible-content bg-white overflow-hidden rounded-lg">
       <p class="p-4">
         כדי  להוריד את קובץ ה-CSV לניתוח, יש לבצע את השלבים הבאים:<br />
-         1. התחבר ל-<a href="https://www.iec.co.il/consumption-info-menu" target="_blank" class="text-blue-500 hover:underline"> https://www.iec.co.il/consumption-info-menu </a>.<br />
+        1. התחבר ל-<a href="https://www.iec.co.il/consumption-info-menu" target="_blank" class="text-blue-500 hover:underline"> https://www.iec.co.il/consumption-info-menu </a>.<br />
         2. לחץ על כפתור "מצב צריכה עדכני".<br />
         3. לחץ על כפתור "קבלת קובץ אקסל עם נתוני צריכה מהשנה האחרונה למייל שלך".<br />
         4. לחץ על כפתור "תשלחו לי".<br />
@@ -140,9 +136,8 @@
     <p class="text-red-400 font-semibold"><strong>הבהרה:</strong> השימוש במידע, הנתונים והחישובים מאתר זה הוא על אחריותך המלאה. אתר זה לא מבטיח את דיוקם, אמינותם, או שלמותם של התכנים.</p>
   </div>
 </footer>
-
 <script src="js/script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

@@ -24,6 +24,22 @@
     "discount": [20]
   },
   {
+    "company_name": "בזק חשמל",
+    "plan_description": "חוסכים חכם בלילה",
+    "plan_link": "https://www.bezeq.co.il/benergy/",
+    "days_of_week": [0, 1, 2, 3, 4],
+    "applicable_hours": [23, 0, 1, 2, 3, 4, 5, 6],
+    "discount": [20]
+  },
+   {
+    "company_name": "הוט אנרג'י",
+    "plan_description": "חוסכים בלילה",
+    "plan_link": "https://www.hot.net.il/heb/hotenergy/",
+    "days_of_week": [0, 1, 2, 3, 4],
+    "applicable_hours": [23, 0, 1, 2, 3, 4, 5, 6],
+    "discount": [20]
+  },
+  {
     "company_name": "סלקום אנרג'י",
     "plan_description": "עובדים מהבית",
     "plan_link": "https://cellcom.co.il/production/Private/1/energy3/",
@@ -37,6 +53,22 @@
     "plan_link": "https://www.partner.co.il/n/partnerpower/lobby",
     "days_of_week": [0, 1, 2, 3, 4],
     "applicable_hours": [8, 9, 10, 11, 12, 13, 14, 15, 16],
+    "discount": [15]
+  },
+    {
+    "company_name": "בזק חשמל",
+    "plan_description": "חוסכים חכם ביום",
+    "plan_link": "https://www.bezeq.co.il/benergy/",
+    "days_of_week": [0, 1, 2, 3, 4],
+    "applicable_hours": [7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+    "discount": [15]
+  },
+     {
+    "company_name": "הוט אנרג'י",
+    "plan_description": "חוסכים ביום",
+    "plan_link": "https://www.hot.net.il/heb/hotenergy/",
+    "days_of_week": [0, 1, 2, 3, 4],
+    "applicable_hours": [7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
     "discount": [15]
   },
   {
@@ -59,6 +91,14 @@
     "company_name": "פזגז חשמל",
     "plan_description": "הנחה 24/7",
     "plan_link": "https://hashmal.pazgas.co.il/hashmal/pickapackage",
+    "days_of_week": [0, 1, 2, 3, 4, 5, 6],
+    "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+    "discount": [7]
+  },
+  {
+    "company_name": "בזק חשמל",
+    "plan_description": "חוסכים חכם 24/7",
+    "plan_link": "https://www.bezeq.co.il/benergy/",
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [7]
@@ -94,5 +134,37 @@
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [5, 6, 7]
+  },
+  {
+    "company_name": "הוט אנרג'י",
+    "plan_description": "חוסכים 24/7",
+    "plan_link": "https://www.hot.net.il/heb/hotenergy/",
+    "days_of_week": [0, 1, 2, 3, 4, 5, 6],
+    "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+    "discount": [5, 6, 7]
+  },
+  {
+    "company_name": "הוט אנרג'י",
+    "plan_description": "חוסכים קבוע HOT",
+    "plan_link": "https://www.hot.net.il/heb/hotenergy/",
+    "days_of_week": [0, 1, 2, 3, 4, 5, 6],
+    "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+    "discount": [7]
+  },
+  {
+    "company_name": "הוט אנרג'י",
+    "plan_description": "חוסכים קבוע e-triple",
+    "plan_link": "https://www.hot.net.il/heb/hotenergy/",
+    "days_of_week": [0, 1, 2, 3, 4, 5, 6],
+    "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+    "discount": [10]
+  },
+  {
+    "company_name": "הוט אנרג'י",
+    "plan_description": "חוסכים קבוע NEXT",
+    "plan_link": "https://www.hot.net.il/heb/hotenergy/",
+    "days_of_week": [0, 1, 2, 3, 4, 5, 6],
+    "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+    "discount": [6]
   }
 ]

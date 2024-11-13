@@ -21,7 +21,7 @@
     "plan_link": "https://cellcom.co.il/production/Private/1/energy3/",
     "days_of_week": [0, 1, 2, 3, 4],
     "applicable_hours": [22, 23, 0, 1, 2, 3, 4, 5, 6],
-    "discount": [20]
+    "discount": [18]
   },
   {
     "company_name": "פרטנר חשמל",

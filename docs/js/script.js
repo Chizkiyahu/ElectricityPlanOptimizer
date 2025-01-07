@@ -290,6 +290,7 @@ function displayPlanResults(totalKwhFreePerPlan) {
                      <table>
                      <tr>
                         <th>דירוג</th>
+                        <th>תוכנית פעילה</th>
                         <th>שם חברה</th>
                         <th>שם תוכנית</th>
                         <th>בימים</th>
@@ -303,6 +304,7 @@ function displayPlanResults(totalKwhFreePerPlan) {
 
     tableHTML += `<tr${rowClass}>
                         <td>${index + 1}</td>
+                        <td>${plan.plan_active}</td>
                         <td>${plan.company_name}</td>
                         <td><a href="${plan.plan_link}" target="_blank" class="text-blue-500 hover:underline">${plan.plan_description}</a></td>
                         <td>${formatDaysOfWeek(plan.days_of_week)}</td>

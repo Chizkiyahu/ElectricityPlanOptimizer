@@ -6,7 +6,7 @@
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [23, 0, 1, 2, 3, 4, 5, 6],
     "discount": [20],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "סלקום אנרג'י",
@@ -15,7 +15,7 @@
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [14, 15, 16, 17, 18, 19, 20],
     "discount": [20],
-    "plan_active": false
+    "plan_active": "לא"
   },
   {
     "company_name": "סלקום אנרג'י",
@@ -24,7 +24,7 @@
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [14, 15, 16, 17, 18, 19, 20],
     "discount": [18],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "סלקום אנרג'י",
@@ -33,7 +33,7 @@
     "days_of_week": [0, 1, 2, 3, 4],
     "applicable_hours": [22, 23, 0, 1, 2, 3, 4, 5, 6],
     "discount": [18],
-    "plan_active": false
+    "plan_active": "לא"
   },
   {
     "company_name": "סלקום אנרג'י",
@@ -42,7 +42,7 @@
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [23, 0, 1, 2, 3, 4, 5, 6],
     "discount": [20],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "סלקום אנרג'י",
@@ -51,7 +51,7 @@
     "days_of_week": [0, 1, 2, 3, 4],
     "applicable_hours": [22, 23, 0, 1, 2, 3, 4, 5, 6],
     "discount": [20],
-    "plan_active": false
+    "plan_active": "לא"
   },
   {
     "company_name": "פרטנר חשמל",
@@ -60,7 +60,7 @@
     "days_of_week": [0, 1, 2, 3, 4],
     "applicable_hours": [0, 1, 2, 3, 4, 5],
     "discount": [20],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "בזק חשמל",
@@ -69,7 +69,7 @@
     "days_of_week": [0, 1, 2, 3, 4],
     "applicable_hours": [23, 0, 1, 2, 3, 4, 5, 6],
     "discount": [20],
-    "plan_active": true
+    "plan_active": "כן"
   },
    {
     "company_name": "הוט אנרג'י",
@@ -78,7 +78,7 @@
     "days_of_week": [0, 1, 2, 3, 4],
     "applicable_hours": [23, 0, 1, 2, 3, 4, 5, 6],
     "discount": [20],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "סלקום אנרג'י",
@@ -87,7 +87,7 @@
     "days_of_week": [0, 1, 2, 3, 4],
     "applicable_hours": [7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
     "discount": [15],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "פרטנר חשמל",
@@ -96,7 +96,7 @@
     "days_of_week": [0, 1, 2, 3, 4],
     "applicable_hours": [8, 9, 10, 11, 12, 13, 14, 15, 16],
     "discount": [15],
-    "plan_active": true
+    "plan_active": "כן"
   },
     {
     "company_name": "בזק חשמל",
@@ -105,7 +105,7 @@
     "days_of_week": [0, 1, 2, 3, 4],
     "applicable_hours": [7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
     "discount": [15],
-    "plan_active": true
+    "plan_active": "כן"
   },
      {
     "company_name": "הוט אנרג'י",
@@ -114,7 +114,7 @@
     "days_of_week": [0, 1, 2, 3, 4],
     "applicable_hours": [7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
     "discount": [15],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "פזגז חשמל",
@@ -123,7 +123,7 @@
     "days_of_week": [5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [10],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "אלקטרה פאוור",
@@ -132,7 +132,7 @@
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [23, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
     "discount": [8, 9, 10],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "פזגז חשמל",
@@ -141,7 +141,7 @@
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [7],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "בזק חשמל",
@@ -150,7 +150,7 @@
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [7],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "אמישראגז חשמל",
@@ -159,7 +159,7 @@
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [6.5],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "אלקטרה פאוור",
@@ -168,7 +168,7 @@
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [5, 6, 7],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "סלקום אנרג'י",
@@ -177,7 +177,7 @@
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [5, 6, 7],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "פרטנר חשמל",
@@ -186,7 +186,7 @@
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [5, 6, 7],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "הוט אנרג'י",
@@ -195,7 +195,7 @@
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [5, 6, 7],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "הוט אנרג'י",
@@ -204,7 +204,7 @@
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [7],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "הוט אנרג'י",
@@ -213,7 +213,7 @@
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
     "discount": [10],
-    "plan_active": true
+    "plan_active": "כן"
   },
   {
     "company_name": "הוט אנרג'י",
@@ -221,6 +221,7 @@
     "plan_link": "https://www.hot.net.il/heb/hotenergy/",
     "days_of_week": [0, 1, 2, 3, 4, 5, 6],
     "applicable_hours": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
-    "discount": [6]
+    "discount": [6],
+    "plan_active": "כן"
   }
 ]

@@ -131,6 +131,9 @@ footer {
     color: var(--best-plan-text);
 }
 
+.inactive-plan {
+    background-color: #d3d3d3; /* Light gray background for inactive plans */
+}
 
 @media screen and (max-width: 768px) {
     .header {

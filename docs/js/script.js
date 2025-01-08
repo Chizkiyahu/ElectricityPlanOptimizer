@@ -50,6 +50,7 @@ document.getElementById("startDate").addEventListener("change", applyFiltersAuto
 document.getElementById("endDate").addEventListener("change", applyFiltersAutomatically);
 document.querySelectorAll("#dayFilters label input").forEach((input) => input.addEventListener("change", applyFiltersAutomatically));
 document.getElementById("yearSelection").addEventListener("change", applyFiltersAutomatically);
+document.getElementById("showInactivePlans").addEventListener("change", applyFiltersAutomatically);
 
 function processData(csvData, isInitialLoad) {
   const lines = csvData.split("\n");
@@ -250,7 +251,11 @@ async function calculateBestPlan(hourlyDataPerDay) {
   const yearSelection = document.getElementById("yearSelection").value; // Get the selected year index
   const selectedYearIndex = parseInt(yearSelection, 10); // Ensure it's an integer
 
-  let totalKwhFreePerPlan = plans.map((plan) => ({ ...plan, totalKwhFree: 0 }));
+  const showInactivePlans = document.getElementById("showInactivePlans").checked;
+
+  let totalKwhFreePerPlan = plans
+    .filter(plan => showInactivePlans || plan.plan_active != "לא")
+    .map((plan) => ({ ...plan, totalKwhFree: 0 }));
 
   // Iterate over each day of the week
   for (let dayOfWeek in hourlyDataPerDay) {
@@ -300,9 +305,9 @@ function displayPlanResults(totalKwhFreePerPlan) {
                      </tr>`;
 
   totalKwhFreePerPlan.forEach((plan, index) => {
-    const rowClass = index === 0 ? ' class="best-plan"' : "";
+    const rowClass = index === 0 ? 'best-plan' : plan.plan_active === "לא" ? 'inactive-plan' : "";
 
-    tableHTML += `<tr${rowClass}>
+    tableHTML += `<tr class="${rowClass}">
                         <td>${index + 1}</td>
                         <td>${plan.plan_active}</td>
                         <td>${plan.company_name}</td>
